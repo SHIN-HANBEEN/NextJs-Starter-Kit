@@ -26,6 +26,7 @@ export function useMounted(): boolean {
 
   useEffect(() => {
     // useEffect는 클라이언트에서만 실행되므로, 실행 즉시 mounted를 true로 설정합니다.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 

@@ -48,13 +48,22 @@ const PIE_DATA = [
   { name: "도서", value: 200 },
 ];
 
-// Tailwind CSS oklch 팔레트와 조화되는 차트 색상 (CSS variable 활용)
+// Tailwind CSS oklch 팔레트와 조화되는 차트 색상 (CSS variable 직접 참조)
+// globals.css에서 oklch() 포맷으로 정의되어 있으므로 hsl() 래핑 없이 var()로 직접 사용합니다.
 const CHART_COLORS = [
-  "hsl(var(--chart-1))",
-  "hsl(var(--chart-2))",
-  "hsl(var(--chart-3))",
-  "hsl(var(--chart-4))",
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "var(--chart-3)",
+  "var(--chart-4)",
 ];
+
+// Tooltip 공통 스타일 — CSS 변수를 직접 참조하여 다크/라이트 모드 자동 지원
+const TOOLTIP_STYLE = {
+  background: "var(--popover)",
+  border: "1px solid var(--border)",
+  borderRadius: "8px",
+  color: "var(--popover-foreground)",
+};
 
 // ─── 1. Bar Chart ────────────────────────────────────────────────
 export function RechartsBarChart() {
@@ -68,15 +77,8 @@ export function RechartsBarChart() {
           className="fill-muted-foreground"
         />
         <YAxis tick={{ fontSize: 12 }} className="fill-muted-foreground" />
-        <Tooltip
-          contentStyle={{
-            background: "hsl(var(--popover))",
-            border: "1px solid hsl(var(--border))",
-            borderRadius: "8px",
-            color: "hsl(var(--popover-foreground))",
-          }}
-        />
-        <Bar dataKey="판매" fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+        <Tooltip contentStyle={TOOLTIP_STYLE} />
+        <Bar dataKey="판매" fill="var(--chart-1)" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );
@@ -90,19 +92,12 @@ export function RechartsLineChart() {
         <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
         <XAxis dataKey="month" tick={{ fontSize: 12 }} />
         <YAxis tick={{ fontSize: 12 }} />
-        <Tooltip
-          contentStyle={{
-            background: "hsl(var(--popover))",
-            border: "1px solid hsl(var(--border))",
-            borderRadius: "8px",
-            color: "hsl(var(--popover-foreground))",
-          }}
-        />
+        <Tooltip contentStyle={TOOLTIP_STYLE} />
         <Legend />
         <Line
           type="monotone"
           dataKey="방문자"
-          stroke="hsl(var(--chart-1))"
+          stroke="var(--chart-1)"
           strokeWidth={2}
           dot={{ r: 4 }}
           activeDot={{ r: 6 }}
@@ -110,7 +105,7 @@ export function RechartsLineChart() {
         <Line
           type="monotone"
           dataKey="판매"
-          stroke="hsl(var(--chart-2))"
+          stroke="var(--chart-2)"
           strokeWidth={2}
           dot={{ r: 4 }}
         />
@@ -127,25 +122,18 @@ export function RechartsAreaChart() {
         <defs>
           {/* 그라디언트 정의 */}
           <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="hsl(var(--chart-1))" stopOpacity={0.3} />
-            <stop offset="95%" stopColor="hsl(var(--chart-1))" stopOpacity={0} />
+            <stop offset="5%" stopColor="var(--chart-1)" stopOpacity={0.3} />
+            <stop offset="95%" stopColor="var(--chart-1)" stopOpacity={0} />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" className="stroke-border" />
         <XAxis dataKey="month" tick={{ fontSize: 12 }} />
         <YAxis tick={{ fontSize: 12 }} />
-        <Tooltip
-          contentStyle={{
-            background: "hsl(var(--popover))",
-            border: "1px solid hsl(var(--border))",
-            borderRadius: "8px",
-            color: "hsl(var(--popover-foreground))",
-          }}
-        />
+        <Tooltip contentStyle={TOOLTIP_STYLE} />
         <Area
           type="monotone"
           dataKey="수익"
-          stroke="hsl(var(--chart-1))"
+          stroke="var(--chart-1)"
           strokeWidth={2}
           fill="url(#colorRevenue)"
         />
@@ -179,14 +167,7 @@ export function RechartsPieChart() {
             />
           ))}
         </Pie>
-        <Tooltip
-          contentStyle={{
-            background: "hsl(var(--popover))",
-            border: "1px solid hsl(var(--border))",
-            borderRadius: "8px",
-            color: "hsl(var(--popover-foreground))",
-          }}
-        />
+        <Tooltip contentStyle={TOOLTIP_STYLE} />
         <Legend />
       </PieChart>
     </ResponsiveContainer>

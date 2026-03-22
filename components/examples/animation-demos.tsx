@@ -19,15 +19,8 @@ import { useState } from "react";
 import { FadeIn } from "@/components/motion/fade-in";
 import { SlideIn } from "@/components/motion/slide-in";
 import { StaggerChildren, StaggerItem } from "@/components/motion/stagger-children";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 // ─── 1. FadeIn 데모 ───────────────────────────────────────────────
 export function FadeInDemo() {

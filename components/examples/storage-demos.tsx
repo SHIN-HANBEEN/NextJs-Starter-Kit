@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 
@@ -263,14 +264,14 @@ export function FormPersistDemo() {
         </div>
         <div className="space-y-1">
           <Label htmlFor="draft-content">내용</Label>
-          <textarea
+          <Textarea
             id="draft-content"
             placeholder="내용을 입력하세요..."
             value={draft.content}
             onChange={(e) =>
               setDraft((prev) => ({ ...prev, content: e.target.value }))
             }
-            className="flex min-h-24 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+            className="min-h-24"
           />
         </div>
       </div>

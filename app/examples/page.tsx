@@ -63,44 +63,44 @@ export default function ExamplesPage() {
   return (
     <div className="flex w-full justify-center px-4 py-12">
       <div className="w-full max-w-4xl">
-      {/* 페이지 제목 */}
-      <FadeIn>
-        <div className="mb-10 text-center">
-          <h1 className="mb-3 text-3xl font-bold tracking-tight">예제 목록</h1>
-          <p className="text-muted-foreground">
-            스타터킷에 포함된 기능을 직접 체험해보세요.
-          </p>
-        </div>
-      </FadeIn>
+        {/* 페이지 제목 */}
+        <FadeIn>
+          <div className="mb-10 text-center">
+            <h1 className="mb-3 text-3xl font-bold tracking-tight">예제 목록</h1>
+            <p className="text-muted-foreground">
+              스타터킷에 포함된 기능을 직접 체험해보세요.
+            </p>
+          </div>
+        </FadeIn>
 
-      {/* 예제 카드 그리드 */}
-      <StaggerChildren className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {EXAMPLE_PAGES.map((example) => {
-          const Icon = example.icon;
-          return (
-            <StaggerItem key={example.href}>
-              <Link href={example.href} className="group block h-full">
-                <Card className="h-full transition-all group-hover:border-primary/50 group-hover:shadow-md">
-                  <CardHeader>
-                    <div className="mb-2 flex items-center gap-3">
-                      <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
-                        <Icon className="size-5 text-primary" />
+        {/* 예제 카드 그리드 */}
+        <StaggerChildren className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {EXAMPLE_PAGES.map((example) => {
+            const Icon = example.icon;
+            return (
+              <StaggerItem key={example.href}>
+                <Link href={example.href} className="group block h-full">
+                  <Card className="h-full transition-all group-hover:border-primary/50 group-hover:shadow-md">
+                    <CardHeader>
+                      <div className="mb-2 flex items-center gap-3">
+                        <div className="flex size-10 items-center justify-center rounded-lg bg-primary/10">
+                          <Icon className="size-5 text-primary" />
+                        </div>
+                        <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
+                          {example.badge}
+                        </span>
                       </div>
-                      <span className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground">
-                        {example.badge}
-                      </span>
-                    </div>
-                    <CardTitle className="text-lg">{example.title}</CardTitle>
-                    <CardDescription className="text-sm leading-relaxed">
-                      {example.description}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </Link>
-            </StaggerItem>
-          );
-        })}
-      </StaggerChildren>
+                      <CardTitle className="text-lg">{example.title}</CardTitle>
+                      <CardDescription className="text-sm leading-relaxed">
+                        {example.description}
+                      </CardDescription>
+                    </CardHeader>
+                  </Card>
+                </Link>
+              </StaggerItem>
+            );
+          })}
+        </StaggerChildren>
       </div>
     </div>
   );
