@@ -128,3 +128,51 @@
     @apply font-sans;
   }
 }
+
+/* ===================================================================
+ * 모바일 웹뷰 최적화 CSS
+ *
+ * Capacitor로 네이티브 앱으로 패키징할 때 WebView 특유의
+ * 이질감을 없애기 위한 CSS 설정입니다.
+ * =================================================================== */
+
+@layer base {
+  html {
+    /* 기기 회전 시 텍스트 크기 자동 조정 방지 */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+
+    /* 터치 시 하이라이트 효과 제거 (네이티브 앱과 동일한 느낌) */
+    -webkit-tap-highlight-color: transparent;
+
+    /* 스크롤 바운스(탄성 스크롤) 방지 — iOS 줌 바운스 현상 제거 */
+    overscroll-behavior: none;
+  }
+
+  body {
+    /* 텍스트 드래그 선택 방지 (앱처럼 동작하도록) */
+    -webkit-user-select: none;
+    user-select: none;
+
+    /* 가로 스크롤 방지 */
+    overflow-x: hidden;
+  }
+
+  /* 입력 필드에서는 텍스트 선택 및 편집을 허용합니다 */
+  input,
+  textarea,
+  [contenteditable="true"] {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+/* SafeArea 인셋 CSS 변수 정의
+ * Capacitor / 모바일 브라우저의 노치, 홈 인디케이터 영역을 고려합니다.
+ * viewport-fit=cover 설정과 함께 사용합니다. */
+:root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+}
