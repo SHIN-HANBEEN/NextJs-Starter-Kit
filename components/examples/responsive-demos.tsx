@@ -21,17 +21,9 @@
  */
 
 import { Monitor, Smartphone, Tablet } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 
-// ─── SSR 하이드레이션 안전 훅 ──────────────────────────────────────
-// 컴포넌트가 클라이언트에 마운트된 후에만 true를 반환합니다.
-// useMediaQuery는 SSR에서 window를 알 수 없으므로 이 훅으로 마운트 여부를 확인합니다.
-function useMounted() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => { setMounted(true); }, []);
-  return mounted;
-}
+import { useMounted } from "@/hooks/use-mounted";
 
 import { Badge } from "@/components/ui/badge";
 import {
