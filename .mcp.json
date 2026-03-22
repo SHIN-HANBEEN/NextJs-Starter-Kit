@@ -9,6 +9,17 @@
         "@playwright/mcp@latest"
       ],
       "env": {}
+    },
+    "mcp-mermaid": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "mcp-mermaid"
+      ],
+      "env": {}
     }
   }
 }
