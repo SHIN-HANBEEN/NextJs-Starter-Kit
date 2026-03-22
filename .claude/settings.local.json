@@ -3,11 +3,13 @@
     "allow": [
       "WebSearch",
       "Bash",
-      "mcp__playwright"
+      "mcp__playwright",
+      "WebFetch(domain:smithery.ai)",
+      "WebFetch(domain:github.com)"
     ]
   },
+  "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "playwright"
-  ],
-  "enableAllProjectMcpServers": true
+  ]
 }
