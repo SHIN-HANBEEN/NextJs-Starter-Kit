@@ -17,7 +17,7 @@
  * </FadeIn>
  */
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 interface FadeInProps {
@@ -33,12 +33,15 @@ export function FadeIn({
   duration = 0.5,
   className,
 }: FadeInProps) {
+  // prefers-reduced-motion 설정을 감지하여 모션 민감 사용자 배려
+  const shouldReduce = useReducedMotion();
+
   return (
     <motion.div
-      // 초기 상태: 투명하고 살짝 아래에 위치
-      initial={{ opacity: 0, y: 16 }}
+      // 초기 상태: 투명하고 살짝 아래에 위치 (모션 감소 시 즉시 표시)
+      initial={shouldReduce ? {} : { opacity: 0, y: 16 }}
       // 뷰포트 진입 시: 불투명하고 제자리로 이동
-      whileInView={{ opacity: 1, y: 0 }}
+      whileInView={shouldReduce ? {} : { opacity: 1, y: 0 }}
       // 뷰포트를 벗어나도 애니메이션이 리셋되지 않도록 한 번만 실행
       viewport={{ once: true, margin: "-50px" }}
       transition={{

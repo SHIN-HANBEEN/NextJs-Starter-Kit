@@ -18,7 +18,7 @@
  * </SlideIn>
  */
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 
 type Direction = "left" | "right" | "top" | "bottom";
@@ -57,14 +57,16 @@ export function SlideIn({
   distance = 40,
   className,
 }: SlideInProps) {
+  // prefers-reduced-motion 설정을 감지하여 모션 민감 사용자 배려
+  const shouldReduce = useReducedMotion();
   const initialOffset = getInitialOffset(direction, distance);
 
   return (
     <motion.div
-      // 초기 상태: 투명하고 지정 방향으로 오프셋
-      initial={{ opacity: 0, ...initialOffset }}
+      // 초기 상태: 투명하고 지정 방향으로 오프셋 (모션 감소 시 즉시 표시)
+      initial={shouldReduce ? {} : { opacity: 0, ...initialOffset }}
       // 뷰포트 진입 시: 불투명하고 제자리로 이동
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      whileInView={shouldReduce ? {} : { opacity: 1, x: 0, y: 0 }}
       // 한 번만 실행 (스크롤을 올려도 리셋되지 않음)
       viewport={{ once: true, margin: "-50px" }}
       transition={{

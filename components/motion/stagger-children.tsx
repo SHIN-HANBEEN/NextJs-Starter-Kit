@@ -23,7 +23,7 @@
  * </StaggerChildren>
  */
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { Variants } from "motion/react";
 import type { ReactNode } from "react";
 
@@ -74,10 +74,14 @@ export function StaggerChildren({
   staggerDelay = 0.1,
   className,
 }: StaggerChildrenProps) {
+  // prefers-reduced-motion 설정을 감지하여 모션 민감 사용자 배려
+  const shouldReduce = useReducedMotion();
+
   return (
     <motion.div
       variants={containerVariants(staggerDelay)}
-      initial="hidden"
+      // 모션 감소 시 애니메이션 없이 즉시 표시
+      initial={shouldReduce ? "show" : "hidden"}
       whileInView="show"
       // 뷰포트에 진입할 때 한 번만 실행
       viewport={{ once: true, margin: "-50px" }}
