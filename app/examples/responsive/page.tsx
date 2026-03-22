@@ -12,6 +12,7 @@ import {
   ComparisonDemo,
   DeviceSpecificComponent,
 } from "@/components/examples/responsive-demos";
+import { SectionHeader } from "@/components/examples/section-header";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Separator } from "@/components/ui/separator";
 
@@ -19,15 +20,6 @@ export const metadata: Metadata = {
   title: "반응형 로직",
   description: "react-responsive를 활용한 JS 레벨 반응형 로직 예제",
 };
-
-function SectionHeader({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="mb-4">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
 
 export default function ResponsivePage() {
   return (

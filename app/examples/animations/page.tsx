@@ -18,6 +18,7 @@ import {
   SlideInDemo,
   StaggerDemo,
 } from "@/components/examples/animation-demos";
+import { SectionHeader } from "@/components/examples/section-header";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Separator } from "@/components/ui/separator";
 
@@ -25,22 +26,6 @@ export const metadata: Metadata = {
   title: "애니메이션",
   description: "Motion(구 Framer Motion)을 활용한 다양한 애니메이션 예제",
 };
-
-// 섹션 구분 헤더 컴포넌트
-function SectionHeader({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="mb-4">
-      <h2 className="text-lg font-semibold">{title}</h2>
-      <p className="text-sm text-muted-foreground">{description}</p>
-    </div>
-  );
-}
 
 export default function AnimationsPage() {
   return (
