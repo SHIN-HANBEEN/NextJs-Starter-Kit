@@ -5,7 +5,8 @@
       "Bash",
       "mcp__playwright",
       "WebFetch(domain:smithery.ai)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Skill(git:commit)"
     ]
   },
   "enableAllProjectMcpServers": true,
