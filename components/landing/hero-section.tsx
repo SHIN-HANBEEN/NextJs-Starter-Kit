@@ -36,7 +36,7 @@ export function HeroSection() {
 
       {/* 메인 타이틀 */}
       <SlideIn direction="bottom" delay={0.1}>
-        <h1 className="mb-6 max-w-3xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
+        <h1 className="mb-6 max-w-4xl text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
           모던 웹 개발을{" "}
           <span className="text-muted-foreground">빠르게 시작하세요</span>
         </h1>

@@ -20,6 +20,7 @@ import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -44,6 +45,10 @@ export function MobileNav() {
       <SheetContent side="left" className="w-72">
         <SheetHeader>
           <SheetTitle className="text-left">{SITE_CONFIG.name}</SheetTitle>
+          {/* 스크린리더에게 다이얼로그 목적을 설명합니다 (시각적으로는 숨김) */}
+          <SheetDescription className="sr-only">
+            사이트 메뉴입니다. 링크를 선택하여 각 페이지로 이동할 수 있습니다.
+          </SheetDescription>
         </SheetHeader>
 
         {/* 네비게이션 링크 목록 */}
