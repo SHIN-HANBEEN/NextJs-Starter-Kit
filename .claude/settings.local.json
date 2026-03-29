@@ -6,11 +6,15 @@
       "mcp__playwright",
       "WebFetch(domain:smithery.ai)",
       "WebFetch(domain:github.com)",
-      "Skill(git:commit)"
+      "Skill(git:commit)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "WebFetch(domain:ui.shadcn.com)"
     ]
   },
   "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": ["playwright"],
+  "enabledMcpjsonServers": [
+    "playwright"
+  ],
   "hooks": {
     "PostToolUse": [
       {
