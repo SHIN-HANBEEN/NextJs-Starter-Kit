@@ -28,7 +28,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko" className={`${inter.variable} scroll-smooth`} suppressHydrationWarning>
+    <html
+      lang="ko"
+      className={`${inter.variable} scroll-smooth`}
+      suppressHydrationWarning
+    >
       <body className="bg-bg-primary antialiased">
         {/* RouteProvider: React Aria 컴포넌트가 next/navigation 라우터를 사용하도록 연결 */}
         <RouteProvider>
