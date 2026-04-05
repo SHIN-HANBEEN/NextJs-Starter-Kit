@@ -4,7 +4,14 @@ import { extendTailwindMerge } from 'tailwind-merge'
 const twMerge = extendTailwindMerge({
   extend: {
     theme: {
-      text: ['display-xs', 'display-sm', 'display-md', 'display-lg', 'display-xl', 'display-2xl'],
+      text: [
+        'display-xs',
+        'display-sm',
+        'display-md',
+        'display-lg',
+        'display-xl',
+        'display-2xl',
+      ],
     },
   },
 })
@@ -17,7 +24,12 @@ export const cn = twMerge
 
 // Tailwind IntelliSense가 style 객체 내 클래스를 정렬할 수 있도록 도와주는 헬퍼
 export function sortCx<
-  T extends Record<string, string | number | Record<string, string | number | Record<string, string | number>>>,
+  T extends Record<
+    string,
+    | string
+    | number
+    | Record<string, string | number | Record<string, string | number>>
+  >,
 >(classes: T): T {
   return classes
 }
