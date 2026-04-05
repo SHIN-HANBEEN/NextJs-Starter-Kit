@@ -21,9 +21,29 @@ if [ -z "$SLACK_WEBHOOK_URL" ]; then
     exit 1
 fi
 
-# JSON 입력에서 메시지 추출
+# JSON 입력 전체 읽기
 INPUT=$(cat)
+
+# 알림 메시지 추출
 MESSAGE=$(echo "$INPUT" | jq -r '.message // ""')
+
+# transcript에서 마지막 assistant 메시지 텍스트 추출 (진행 중인 작업 컨텍스트)
+SUMMARY=$(echo "$INPUT" | jq -r '
+  [ .transcript[]? | select(.role == "assistant") ] | last
+  | .content
+  | if type == "array" then
+      [ .[] | select(.type == "text") | .text ] | join("\n")
+    else
+      .
+    end
+  // ""
+')
+
+# 요약이 너무 길면 300자로 자르고 말줄임표 추가
+MAX_LEN=300
+if [ -n "$SUMMARY" ] && [ ${#SUMMARY} -gt $MAX_LEN ]; then
+    SUMMARY="${SUMMARY:0:$MAX_LEN}..."
+fi
 
 # 프로젝트명 추출
 PROJECT_NAME=$(basename "$CLAUDE_PROJECT_DIR")
@@ -35,17 +55,23 @@ TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 echo "DEBUG: MESSAGE = '$MESSAGE'" >&2
 echo "DEBUG: PROJECT_NAME = '$PROJECT_NAME'" >&2
 echo "DEBUG: TIMESTAMP = '$TIMESTAMP'" >&2
+echo "DEBUG: SUMMARY (first 100) = '${SUMMARY:0:100}'" >&2
+
+# 요약이 있으면 같이 전송, 없으면 메시지만 전송
+if [ -n "$SUMMARY" ]; then
+    BODY="🔔 권한 요청 / 입력 대기\n\n프로젝트: $PROJECT_NAME\n시간: $TIMESTAMP\n\n⚠️ *알림 메시지*\n$MESSAGE\n\n📋 *진행 중인 작업*\n$SUMMARY"
+else
+    BODY="🔔 권한 요청 / 입력 대기\n\n프로젝트: $PROJECT_NAME\n시간: $TIMESTAMP\n\n⚠️ *알림 메시지*\n$MESSAGE"
+fi
 
 # jq 출력을 파이프로 curl에 직접 전달 (변수 경유 시 인코딩 손실 방지)
 jq -n \
-  --arg project "$PROJECT_NAME" \
-  --arg message "$MESSAGE" \
-  --arg timestamp "$TIMESTAMP" \
+  --arg body "$BODY" \
   '{
     channel: "#claude-code-alarm",
     username: "Claude Code",
     icon_emoji: ":bell:",
-    text: ("🔔 권한 요청 알림\n\n프로젝트: " + $project + "\n상태: " + $message + "\n시간: " + $timestamp + "\n\nClaude Code에서 알림이 도착했습니다.")
+    text: $body
   }' \
 | curl -X POST \
     -H "Content-Type: application/json" \

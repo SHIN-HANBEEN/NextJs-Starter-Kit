@@ -38,6 +38,7 @@ src/app/
 ```
 
 **🚀 App Router 규칙:**
+
 - `page.tsx`: 해당 경로의 메인 페이지
 - `layout.tsx`: 레이아웃 컴포넌트 (자식 페이지 감쌈)
 - `loading.tsx`: 로딩 UI (필요시)
@@ -48,37 +49,69 @@ src/app/
 
 ```
 src/components/
-├── ui/                 # 🎛️ 기본 UI 컴포넌트 (UntitledUI React)
-│   ├── button.tsx     # 버튼
-│   ├── card.tsx       # 카드
-│   ├── form.tsx       # 폼 관련
-│   ├── input.tsx      # 입력 필드
-│   └── ...           # 기타 UI 컴포넌트
-├── layout/            # 🏗️ 레이아웃 컴포넌트
-│   ├── container.tsx  # 컨테이너 래퍼
-│   ├── header.tsx     # 헤더
-│   └── footer.tsx     # 푸터
-├── navigation/        # 🧭 네비게이션 컴포넌트
-│   ├── main-nav.tsx   # 메인 네비게이션
-│   └── mobile-nav.tsx # 모바일 네비게이션
-├── sections/          # 📄 페이지 섹션 컴포넌트
-│   ├── hero.tsx       # 히어로 섹션
-│   ├── features.tsx   # 기능 소개
-│   └── cta.tsx        # Call-to-Action
-├── providers/         # 🔧 Context 프로바이더
-│   ├── theme-provider.tsx  # next-themes (.light-mode/.dark-mode)
-│   └── route-provider.tsx  # React Aria + Next.js 라우터 연결
-├── login-form.tsx     # 🔐 로그인 폼
-├── signup-form.tsx    # ✍️ 회원가입 폼
-└── theme-toggle.tsx   # 🌓 테마 토글
+├── base/              # 🎛️ UntitledUI 핵심 컴포넌트 (React Aria 기반) [신규 표준]
+│   ├── avatar/       # Avatar, AvatarLabelGroup
+│   ├── badges/       # Badge, BadgeWithDot, BadgeWithIcon
+│   ├── buttons/      # Button (10 color 변형)
+│   ├── button-group/ # ButtonGroup
+│   ├── checkbox/     # Checkbox
+│   ├── dropdown/     # Dropdown (8 변형)
+│   ├── input/        # Input, InputGroup, PinInput 등
+│   ├── radio-buttons/# RadioButtons
+│   ├── select/       # Select, ComboBox, MultiSelect
+│   ├── slider/       # Slider
+│   ├── tags/         # Tags
+│   ├── textarea/     # Textarea
+│   ├── toggle/       # Toggle
+│   └── tooltip/      # Tooltip
+├── application/      # 📱 복잡한 애플리케이션 컴포넌트 [신규 표준]
+│   ├── app-navigation/ # Header/Sidebar 네비게이션
+│   ├── charts/       # Recharts 기반 차트
+│   ├── date-picker/  # DatePicker, DateRangePicker
+│   ├── modals/       # Modal (React Aria 기반)
+│   ├── pagination/   # 페이지네이션
+│   ├── table/        # 데이터 테이블
+│   └── tabs/         # 탭
+├── foundations/      # 🎨 디자인 파운데이션
+│   ├── featured-icon/# FeaturedIcon (6 테마)
+│   ├── integration-icons/ # 브랜드 아이콘
+│   ├── payment-icons/# 결제 아이콘
+│   └── social-icons/ # 소셜 아이콘
+├── marketing/        # 📣 마케팅 컴포넌트
+│   └── header-navigation/ # 메가메뉴 마케팅 헤더
+├── shared-assets/    # 🖼️ 공유 에셋
+│   ├── background-patterns/ # 배경 패턴
+│   ├── illustrations/# 일러스트레이션
+│   ├── iphone-mockup/# iPhone 목업
+│   └── qr-code/      # QR 코드 생성
+├── ui/               # 🔴 레거시 shadcn/ui 컴포넌트 (기존 페이지 전용)
+│   ├── button.tsx    # login/signup/hero 등에서 사용 중
+│   └── ...           # 18개 shadcn 컴포넌트
+├── layout/           # 🏗️ 레이아웃 컴포넌트
+│   ├── container.tsx # 컨테이너 래퍼
+│   ├── header.tsx    # 헤더
+│   └── footer.tsx    # 푸터
+├── navigation/       # 🧭 네비게이션 컴포넌트
+├── sections/         # 📄 페이지 섹션 컴포넌트
+├── providers/        # 🔧 Context 프로바이더
+│   ├── theme-provider.tsx # next-themes (.light-mode/.dark-mode)
+│   └── route-provider.tsx # React Aria + Next.js 라우터 연결
+├── login-form.tsx    # 🔐 로그인 폼 (shadcn 레거시)
+├── signup-form.tsx   # ✍️ 회원가입 폼 (shadcn 레거시)
+└── theme-toggle.tsx  # 🌓 테마 토글
 ```
 
 **🧩 컴포넌트 분류 규칙:**
 
-1. **ui/**: UntitledUI React 기반 재사용 가능한 기본 컴포넌트
-   - 순수 UI 컴포넌트만 포함
-   - 비즈니스 로직 없음
-   - props로 모든 동작 제어
+1. **base/ & application/ (신규 표준)**: UntitledUI 공식 컴포넌트 (React Aria 기반)
+   - 신규 컴포넌트 개발 시 이 디렉토리 우선 사용
+   - `cx()`와 `sortCx()`를 `@/utils/cx`에서 import
+   - React Aria Components import 시 `Aria*` 프리픽스 필수
+
+2. **ui/ (레거시)**: shadcn/ui Radix UI 기반 컴포넌트
+   - 기존 login/signup/hero/features 페이지가 사용 중
+   - 점진적으로 UntitledUI 컴포넌트로 마이그레이션 예정
+   - 신규 컴포넌트는 여기에 추가하지 않음
 
 2. **layout/**: 페이지 구조를 담당하는 레이아웃 컴포넌트
    - 전체 페이지 구조
@@ -109,6 +142,7 @@ src/lib/
 ```
 
 **📚 lib/ 폴더 확장 가이드:**
+
 ```
 src/lib/
 ├── utils.ts           # 공통 유틸리티
@@ -147,13 +181,13 @@ userprofile.tsx         # 소문자만 (금지)
 
 ```typescript
 // ✅ 올바른 컴포넌트 네이밍
-export function UserProfile() { }     // PascalCase
-export function LoginForm() { }       // PascalCase
-export function APIEndpoint() { }     // 약어도 PascalCase
+export function UserProfile() {} // PascalCase
+export function LoginForm() {} // PascalCase
+export function APIEndpoint() {} // 약어도 PascalCase
 
 // ❌ 잘못된 컴포넌트 네이밍
-export function userProfile() { }     // camelCase (금지)
-export function login_form() { }      // snake_case (금지)
+export function userProfile() {} // camelCase (금지)
+export function login_form() {} // snake_case (금지)
 ```
 
 ### 폴더 네이밍
@@ -185,6 +219,7 @@ import { cn } from '../../lib/utils'
 ```
 
 **📍 정의된 별칭:**
+
 - `@/components` → `src/components`
 - `@/lib` → `src/lib`
 - `@/hooks` → `src/hooks`
@@ -240,10 +275,12 @@ src/lib/api-utils.ts        # 새 파일 생성
 ## 🎯 코드 조직 베스트 프랙티스
 
 ### 1. 단일 책임 원칙
+
 - 하나의 파일은 하나의 주요 기능만 담당
 - 관련된 타입과 유틸리티는 같은 파일에 포함 가능
 
 ### 2. 의존성 순서
+
 ```typescript
 // 1. 외부 라이브러리
 import React from 'react'
@@ -258,19 +295,21 @@ import './component.css'
 ```
 
 ### 3. Export 규칙
+
 ```typescript
 // ✅ Named export 사용 (권장)
-export function LoginForm() { }
+export function LoginForm() {}
 
 // ✅ Default export (페이지 컴포넌트)
-export default function LoginPage() { }
+export default function LoginPage() {}
 
 // ❌ 혼재 사용 지양
-export function LoginForm() { }
-export default LoginForm  // 같은 컴포넌트를 두 방식으로 export
+export function LoginForm() {}
+export default LoginForm // 같은 컴포넌트를 두 방식으로 export
 ```
 
 ### 4. 파일 크기 관리
+
 - 단일 파일: 300줄 이하 권장
 - 300줄 초과 시 분할 고려
 - 관련 기능별로 분리
@@ -301,8 +340,8 @@ export function SuperMegaComponent() {
 }
 
 // 혼재된 import
-import Button from '@/components/ui/button'  // default
-import { Card } from '@/components/ui/card'  // named
+import Button from '@/components/ui/button' // default
+import { Card } from '@/components/ui/card' // named
 
 // 깊은 상대 경로
 import { utils } from '../../../../../lib/utils'

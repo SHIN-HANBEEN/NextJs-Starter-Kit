@@ -150,8 +150,8 @@ export function CustomButton({ className, ...props }) {
   return (
     <Button
       className={cn(
-        "transition-all duration-200",
-        "hover:shadow-lg hover:-translate-y-0.5",
+        'transition-all duration-200',
+        'hover:-translate-y-0.5 hover:shadow-lg',
         className
       )}
       {...props}
@@ -163,7 +163,7 @@ export function CustomButton({ className, ...props }) {
 export function MyButton({ className, ...props }) {
   return (
     <button
-      className="px-4 py-2 bg-blue-500..." // 긴 클래스 나열
+      className="bg-blue-500... px-4 py-2" // 긴 클래스 나열
       {...props}
     />
   )
@@ -292,7 +292,7 @@ Figma에서 브랜드 색상을 변경한 경우 `src/app/theme.css`의 `--color
 
 ```css
 /* src/app/theme.css - @theme {} 블록 내 */
---color-brand-600: rgb(127 86 217);  /* 기본값: violet */
+--color-brand-600: rgb(127 86 217); /* 기본값: violet */
 /* → rgb(59 130 246) 등으로 교체하면 전체 컴포넌트에 반영 */
 ```
 
@@ -453,27 +453,32 @@ import { cn } from '@/lib/utils'
 새 컴포넌트 작성 시 확인사항:
 
 ### 기본 사항
+
 - [ ] TailwindCSS 유틸리티 클래스 우선 사용
 - [ ] cn() 함수로 클래스 조합
 - [ ] 시맨틱 색상 변수 사용
 - [ ] 반응형 디자인 적용
 
 ### 다크모드
+
 - [ ] 다크모드 대응 색상 사용
 - [ ] 하드코딩된 색상 없음
 - [ ] 테마 전환 시 깨짐 없음
 
 ### 성능
+
 - [ ] 불필요한 애니메이션 없음
 - [ ] will-change 적절히 사용
 - [ ] 인라인 스타일 없음
 
 ### 접근성
+
 - [ ] 충분한 색상 대비
 - [ ] 포커스 상태 스타일링
 - [ ] 스크린 리더 고려
 
 ### 유지보수
+
 - [ ] 일관된 클래스 순서
 - [ ] 재사용 가능한 컴포넌트 활용
 - [ ] 의미있는 클래스 조합

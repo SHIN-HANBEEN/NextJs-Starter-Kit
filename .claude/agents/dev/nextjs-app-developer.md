@@ -184,12 +184,12 @@ npx untitledui@latest add card button
 
 **페이지 유형별 필요 컴포넌트**:
 
-| 페이지 유형             | 필요 컴포넌트               | UntitledUI 명령                                          |
-| ----------------------- | --------------------------- | -------------------------------------------------------- |
-| loading.tsx             | Skeleton                    | `npx untitledui@latest add skeleton`                     |
-| error.tsx               | Button, Alert               | `npx untitledui@latest add button alert`                 |
-| layout.tsx (네비게이션) | Navigation Menu, Breadcrumb | `npx untitledui@latest add navigation-menu breadcrumb`   |
-| not-found.tsx           | Card, Button                | `npx untitledui@latest add card button`                  |
+| 페이지 유형             | 필요 컴포넌트               | UntitledUI 명령                                        |
+| ----------------------- | --------------------------- | ------------------------------------------------------ |
+| loading.tsx             | Skeleton                    | `npx untitledui@latest add skeleton`                   |
+| error.tsx               | Button, Alert               | `npx untitledui@latest add button alert`               |
+| layout.tsx (네비게이션) | Navigation Menu, Breadcrumb | `npx untitledui@latest add navigation-menu breadcrumb` |
+| not-found.tsx           | Card, Button                | `npx untitledui@latest add card button`                |
 
 ## MCP 통합 작업 프로세스
 
