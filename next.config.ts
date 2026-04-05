@@ -7,7 +7,11 @@ const nextConfig: NextConfig = {
     formats: ['image/webp', 'image/avif'],
   },
   experimental: {
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: [
+      'lucide-react',
+      '@untitledui/icons',
+      '@untitledui/file-icons',
+    ],
   },
   async headers() {
     return [

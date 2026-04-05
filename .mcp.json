@@ -12,7 +12,12 @@
     },
     "sequential-thinking": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "@modelcontextprotocol/server-sequential-thinking"]
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
     },
     "shadcn": {
       "command": "cmd",
@@ -24,7 +29,15 @@
     },
     "framelink-figma": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "figma-developer-mcp@0.5.2", "--stdio", "--env", ".env.local"]
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "figma-developer-mcp@0.5.2",
+        "--stdio",
+        "--env",
+        ".env.local"
+      ]
     }
   }
 }
